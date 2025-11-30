@@ -25,6 +25,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "wordoftheday_face.h"
+#include "watch.h"
+#include "watch_common_display.h"
 
 void wordoftheday_face_setup(uint8_t watch_face_index, void ** context_ptr) {
     (void) watch_face_index;
@@ -45,13 +47,12 @@ void wordoftheday_face_activate(void *context) {
 
 bool wordoftheday_face_loop(movement_event_t event, void *context) {
     wordoftheday_state_t *state = (wordoftheday_state_t *)context;
-
+    unsigned int wordsMax;
+    
     switch (event.event_type) {
         case EVENT_ACTIVATE:
-            // display 6 characters at the bottom of the screen, the main line
-            watch_display_text(WATCH_POSITION_TOP_LEFT, "  ");
-            watch_display_text(WATCH_POSITION_TOP_RIGHT, "  ");
-            watch_display_text(WATCH_POSITION_BOTTOM, words[state->counter]);
+            watch_display_text_with_fallback(WATCH_POSITION_TOP, "ABCDE", "  ");
+            watch_display_text_with_fallback(WATCH_POSITION_BOTTOM, "ABCDEF", "  ");
             break;
         case EVENT_TICK:
             // If needed, update your display here.
@@ -62,10 +63,10 @@ bool wordoftheday_face_loop(movement_event_t event, void *context) {
             // empty case for EVENT_LIGHT_BUTTON_DOWN.
             break;
         case EVENT_ALARM_BUTTON_UP:
-            // Just in case you have need for another button.
-            unsigned int wordsMax = sizeof(words) / sizeof(words[0]);
+            wordsMax = sizeof(words) / sizeof(words[0]);
             state->counter = (state->counter + 1) % wordsMax;
-            watch_display_text(WATCH_POSITION_BOTTOM, words[state->counter]);
+            watch_display_text_with_fallback(WATCH_POSITION_TOP, words[state->counter][0],"ERR  ");
+            watch_display_text_with_fallback(WATCH_POSITION_BOTTOM, words[state->counter][1],"ERR  ");
             break;
         case EVENT_TIMEOUT:
             // Your watch face will receive this event after a period of inactivity. If it makes sense to resign,
