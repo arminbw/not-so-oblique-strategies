@@ -54,12 +54,15 @@ bool wordoftheday_face_loop(movement_event_t event, void *context) {
         case EVENT_ACTIVATE:
             watch_date_time_t date_time = movement_get_local_date_time();
             uint16_t day_of_year = watch_utility_days_since_new_year(date_time.unit.year, date_time.unit.month, date_time.unit.day);
-            char buf[9]; 
-            sprintf(buf, "%3d  ", day_of_year);
+            char buf[9];
+
+            state->counter = day_of_year;
+            // sprintf(buf, "%3d  ", day_of_year);
             // uint8_t is_leap(uint16_t year);
             // movement_clock_mode_24h() == MOVEMENT_CLOCK_MODE_024H ? "%02d%02d%02d%02d" : "%2d%2d%02d%02d",
-            watch_display_text_with_fallback(WATCH_POSITION_TOP, buf, "   ");
-            watch_display_text_with_fallback(WATCH_POSITION_BOTTOM, "kKxXxX", "  ");
+            // watch_display_text_with_fallback(WATCH_POSITION_TOP, buf, "   ");
+            watch_display_text_with_fallback(WATCH_POSITION_TOP, words[state->counter][0],"ERR  ");
+            watch_display_text_with_fallback(WATCH_POSITION_BOTTOM, words[state->counter][1],"ERR  ");
             break;
         case EVENT_TICK:
             // If needed, update your display here.
