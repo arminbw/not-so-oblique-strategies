@@ -48,7 +48,6 @@ void quest_of_the_day_face_activate(void *context) {
 
 bool quest_of_the_day_face_loop(movement_event_t event, void *context) {
     quest_of_the_day_state_t *state = (quest_of_the_day_state_t *)context;
-    // unsigned int wordsMax;
     watch_date_time_t date_time;
     uint16_t day_of_year;
     
@@ -56,10 +55,17 @@ bool quest_of_the_day_face_loop(movement_event_t event, void *context) {
         case EVENT_ACTIVATE:
             date_time = movement_get_local_date_time();
             day_of_year = watch_utility_days_since_new_year(date_time.unit.year, date_time.unit.month, date_time.unit.day);
-            day_of_year = day_of_year;
-            state->counter = day_of_year;
-            // do later:
-            // uint8_t is_leap(uint16_t year);
+            if (is_leap(date_time.unit.year)) {
+              if (day_of_year == 60) {
+                // only in leap years we use the 0 index in the array
+                state->counter = 0;
+              }
+              if (day_of_year > 60) {
+                state->counter = day_of_year - 1;
+              }
+            } else {
+              state->counter = day_of_year;
+            }
             watch_display_text_with_fallback(WATCH_POSITION_TOP, words[state->counter][0],"ERR  ");
             watch_display_text_with_fallback(WATCH_POSITION_BOTTOM, words[state->counter][1],"ERR  ");
             break;
