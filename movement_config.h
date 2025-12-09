@@ -30,7 +30,8 @@
 const watch_face_t watch_faces[] = {
     clock_face,
     quest_of_the_day_face,
-    set_time_face
+    set_time_face,
+    settings_face
 };
 
 /*const watch_face_t watch_faces[] = {

@@ -1,14 +1,22 @@
+Intro
+=====
+Ever wanted a watch that tells you what to do with supreme confidence and zero knowledge of your life? Now’s your chance. Press the bottom-left button to receive sermon, every day of the year.
+
 Second Movement
 ===============
+[Sensor Watch](https://www.sensorwatch.net) Sensor Watch by [Oddly Specific Objects](https://www.oddlyspecificobjects.com/) is an ARM Cortex M0+ board swap for the classic Casio F-91W wristwatch.
 
-This is a work-in-progress refactor of the Movement firmware for [Sensor Watch](https://www.sensorwatch.net).
+This is a fork of the Community Firmware. 
+It adds a watch face called not-so-oblique-strategies.
+It also adds a few customisations in movement_config.h, putting the focus on the *Sensor Watch Pro* and the *Custom Display*.
+If you want to use this watch face in another setup, adopt the config file accordingly.
 
 
 Getting dependencies
 -------------------------
-You will need to install [the GNU Arm Embedded Toolchain](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads/) to build projects for the watch. If you're using Debian or Ubuntu, it should be sufficient to `apt install gcc-arm-none-eabi`.
+Install the arm cross-compiling toolchain on your system: https://www.sensorwatch.net/docs/movement/building/
 
-You will need to fetch the git submodules for this repository too, with `git submodule update --init --recursive` 
+Get the git submodules: `git submodule update --init --recursive`
 
 
 Building Second Movement
@@ -16,26 +24,8 @@ Building Second Movement
 You can build the default watch firmware with:
 
 ```
-make BOARD=board_type DISPLAY=display_type
+make 
 ```
-
-where `board_type` is any of:
-- sensorwatch_pro
-- sensorwatch_green  
-- sensorwatch_red (also known as Sensor Watch Lite)
-- sensorwatch_blue
-
-and `display_type` is any of:
-- classic
-- custom
-
-Optionally you can set the watch time when building the firmware using `TIMESET=minute`. 
-
-`TIMESET` can be defined as:
-- `year` = Sets the year to the PC's
-- `day` = Sets the default time down to the day (year, month, day)
-- `minute` = Sets the default time down to the minute (year, month, day, hour, minute)
-
 
 If you'd like to modify which faces are built and included in the firmware, edit `movement_config.h`. You will get a compilation error if you enable more faces than the watch can store.
 
