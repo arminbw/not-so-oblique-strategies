@@ -1,16 +1,20 @@
 Intro
 =====
-Ever wanted a watch that tells you what to do with supreme confidence and zero knowledge of your life? Now’s your chance. Press the bottom-left button to receive sermon, every day of the year.
+Ever wanted a watch that tells you what to do with supreme confidence and zero knowledge of your life? Now’s your chance. Press the bottom-left button to receive a daily edict.
+
+(Long-press on the bottom-left button will show you the config-watch-face)
 
 Second Movement
 ===============
-[Sensor Watch](https://www.sensorwatch.net) Sensor Watch by [Oddly Specific Objects](https://www.oddlyspecificobjects.com/) is an ARM Cortex M0+ board swap for the classic Casio F-91W wristwatch.
+[Sensor Watch](https://www.sensorwatch.net) by [Oddly Specific Objects](https://www.oddlyspecificobjects.com/) is an ARM Cortex M0+ board swap for the classic Casio F-91W wristwatch.
 
 This is a fork of the Community Firmware. 
-It adds a watch face called not-so-oblique-strategies.
-It also adds a few customisations in movement_config.h, putting the focus on the *Sensor Watch Pro* and the *Custom Display*.
-If you want to use this watch face in another setup, adopt the config file accordingly.
 
+It adds the **not-so-oblique-strategies** watch face.
+
+It also adds a few customisations in movement_config.h, putting the focus on the *Sensor Watch Pro* and the *Custom Display*. If you want to use this watch face in another setup, adopt the config file accordingly.
+
+![Sensor Watch Pro in the CASIO F-91W showing a text: feed soul](/demo.jpg?raw=true "feed soul")
 
 Getting dependencies
 -------------------------
