@@ -27,4 +27,4 @@ fp-info-cache
 *.plan
 /.direnv
 /.emscripten_cache
-!/build/firmware.uf2
+!**/build/firmware.uf2
