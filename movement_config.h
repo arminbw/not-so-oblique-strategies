@@ -29,10 +29,13 @@
 
 const watch_face_t watch_faces[] = {
     clock_face,
-    quest_of_the_day_face,
+    not_so_oblique_strategies_face,
     set_time_face,
     settings_face
 };
+
+/* This build puts the focus on not_so_oblique_strategies.
+ * If you want to see more faces, feel free to add them to your list. */
 
 /*const watch_face_t watch_faces[] = {
     clock_face,
